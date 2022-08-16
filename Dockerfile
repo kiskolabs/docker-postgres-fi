@@ -1,4 +1,6 @@
 FROM postgres:latest
-RUN localedef -i fi_FI -c -f UTF-8 -A /usr/share/locale/locale.alias fi_FI.UTF-8
-ENV LANG fi_FI.utf8
-
+RUN sed -i -e 's/# fi_FI.UTF-8 UTF-8/fi_FI.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen
+ENV LANG fi_FI.UTF-8 
+ENV LANGUAGE fi_FI:fi
+ENV LC_ALL fi_FI.UTF-8
